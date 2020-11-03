@@ -1,0 +1,22 @@
+class Solution(object):
+    c=0
+    def sumNumbers(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if(root==None):
+            return 0
+        def add(node,s):
+            s+=str(node.val)
+            if(node.left==None and node.right==None):
+                self.c+=int(s)
+            elif(node.left!=None and node.right!=None):
+                add(node.left,s)
+                add(node.right,s)
+            elif(node.left!=None and node.right==None):
+                add(node.left,s)
+            elif(node.left==None and node.right!=None):
+                add(node.right,s)
+        add(root,"")
+        return self.c
