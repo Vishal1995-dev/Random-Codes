@@ -1,0 +1,38 @@
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        length=len(nums)
+        l={}
+        nums.sort()
+        if(set(nums)=={0} and length>=3):
+            return([[0,0,0]])
+        for i in range(length-2):  
+            j=i+1
+            k=length-1
+            while(j<k):
+                sum=nums[i]+nums[j]+nums[k]
+                if(sum==0):
+                    key=''.join(str(sorted([nums[i],nums[j],nums[k]])))
+                    if key not in l:
+                        l[key]=[nums[i],nums[j],nums[k]]
+                    while (j<k & nums[j] == nums[j+1]): 
+                        j=j+1;
+                    while (j<k & nums[k] == nums[k-1]):
+                        k=k-1;    
+                    j=j+1
+                elif(sum>0):
+                    k=k-1
+                elif(sum<0):
+                    j=j+1
+            """        
+            for j in range(i+1,length-1):
+                for k in range(j+1,length):
+                    if(nums[i]+nums[j]+nums[k]==0): 
+                        key=''.join(str(sorted([nums[i],nums[j],nums[k]])))
+                        if key not in l:
+                            l[key]=[nums[i],nums[j],nums[k]]
+        """
+        return(l.values())
