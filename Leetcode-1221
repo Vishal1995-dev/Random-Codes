@@ -1,0 +1,16 @@
+class Solution(object):
+    def balancedStringSplit(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        cnt=0
+        val=0
+        for i in s:
+            if(i=='R'):
+                val+=1
+            elif(i=='L'):
+                val-=1
+            if(val==0):
+                cnt+=1
+        return cnt
