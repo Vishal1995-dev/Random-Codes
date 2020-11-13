@@ -1,0 +1,21 @@
+class Solution(object):
+    def buildArray(self, target, n):
+        """
+        :type target: List[int]
+        :type n: int
+        :rtype: List[str]
+        """
+        a=[]
+        j=1
+        for i in target:
+            if(j==i):
+                a.append("Push")
+                j+=1  
+            else:
+                while(j!=i):
+                    a.append("Push")
+                    a.append("Pop")
+                    j+=1
+                a.append("Push")
+                j+=1
+        return a
