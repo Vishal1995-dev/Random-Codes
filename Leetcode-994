@@ -1,0 +1,35 @@
+class Solution(object):
+    time=0
+    b=[[1,0],[-1,0],[0,1],[0,-1]]
+    def orangesRotting(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        fresh=[]
+        rotten=[]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if(grid[i][j]==1):
+                    fresh.append([i,j])
+                elif(grid[i][j]==2):
+                    rotten.append([i,j])
+        if(len(fresh)==0):
+            return self.time
+        self.time+=1
+        flag=0
+        
+        for i in rotten:
+            for p in self.b:
+                l=i[0]+p[0]
+                r=i[1]+p[1]
+                if(l>=0 and l<len(grid) and r>=0 and r<len(grid[0])):
+                    print(l,r)
+                    if(grid[l][r]==1):
+                        grid[l][r]=2
+                        flag=1
+        if(flag==1):
+            p=self.orangesRotting(grid)
+        elif(flag==0):
+            return -1
+        return p
