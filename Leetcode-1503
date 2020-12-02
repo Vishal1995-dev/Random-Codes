@@ -1,0 +1,15 @@
+class Solution(object):
+    def getLastMoment(self, n, left, right):
+        """
+        :type n: int
+        :type left: List[int]
+        :type right: List[int]
+        :rtype: int
+        """
+        lMax=-1
+        rMax=n+1
+        if(left!=[]):
+            lMax=max(left)
+        if(right!=[]):
+            rMax=min(right)
+        return (max(lMax,n-rMax))
