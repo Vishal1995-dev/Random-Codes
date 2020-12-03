@@ -1,0 +1,50 @@
+class Solution(object):
+    def canJump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        
+        
+        :Approach 1 : Dynamic programming Top-down
+        
+        memo=[0]*(len(nums))
+        
+        def jump(pos):
+            
+            if(memo[pos]!=0):
+                if(memo[pos]==1):
+                    return True
+                else:
+                    return False
+                
+            largest=min(pos+nums[pos],len(nums)-1)
+            
+            for j in range (largest,pos,-1):
+                if(jump(j)==True):
+                    memo[pos]=1
+                    return True
+            
+            memo[pos]=-1
+            return False
+        
+        memo[len(nums)-1]=1
+        return jump(0)
+        
+        :Approach 2: Dynamic programming Bottom-up
+        
+        memo=[0]*len(nums)
+        memo[len(memo)-1]=1
+        for i in range(len(nums)-2,-1,-1):
+            largest=min(i+nums[i],len(nums)-1)
+            for j in range(i+1,largest+1):
+                if(memo[j]==1):
+                    memo[i]=1
+                    break
+        return memo[0]==1
+        """
+        
+        last=len(nums)-1
+        for i in range(len(nums)-1,-1,-1):
+            if(i+nums[i]>=last):
+                last=i
+        return last==0
