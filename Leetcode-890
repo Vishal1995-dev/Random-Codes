@@ -1,0 +1,28 @@
+class Solution(object):
+    def findAndReplacePattern(self, words, pattern):
+        """
+        :type words: List[str]
+        :type pattern: str
+        :rtype: List[str]
+        """
+        ret=[]
+        p={}
+        j=1
+        p_s=''
+        for i in pattern:
+            if(i not in p):
+                p[i]=str(j)
+                j+=1
+            p_s+=p[i]
+        for i in words:
+            s=''
+            w={}
+            z=1
+            for j in i:
+                if(j not in w):
+                    w[j]=str(z)
+                    z+=1
+                s+=w[j]
+            if(s==p_s):
+                ret.append(i)
+        return ret
