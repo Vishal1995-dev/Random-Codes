@@ -1,0 +1,36 @@
+class Solution(object):
+    def countPrimes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        
+        cnt=0
+        
+        def isPrime(no):
+            i=2
+            while(i*i<=no):
+                if(no%i==0):
+                    return False
+                i+=1
+            return True
+        
+        for i in range(2,n):
+            if(isPrime(i)==True):
+                cnt+=1
+        return cnt
+        """
+        cnt=0
+        if(n<=1):
+            return 0
+        prime=[1]*n
+        prime[0]=0
+        prime[1]=0
+        for i in range(2,n):
+            if(prime[i]==False):
+                continue
+            for j in range(i*i,n,i):
+                prime[j]=0
+        for i in range(2,n):
+            if(prime[i]==True):
+                cnt+=1
+        return cnt
