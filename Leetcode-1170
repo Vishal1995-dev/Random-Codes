@@ -1,0 +1,24 @@
+class Solution(object):
+    def numSmallerByFrequency(self, queries, words):
+        """
+        :type queries: List[str]
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        a=[]
+        b=[]
+        words.sort()
+        for i in words:
+            j=list(i)
+            j.sort()
+            a.append(j.count(j[0]))
+        for i in queries:
+            j=list(i)
+            j.sort()
+            freq1=j.count(j[0])
+            cnt=0
+            for p in a:
+                if(p>freq1):
+                    cnt+=1
+            b.append(cnt)
+        return b
