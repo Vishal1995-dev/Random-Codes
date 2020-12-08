@@ -1,0 +1,22 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def middleNode(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        i=1
+        temp=head.next
+        while(temp!=None):
+            i+=1
+            temp=temp.next
+        temp=head
+        i=i/2
+        while(i>0):
+            temp=temp.next
+            i-=1
+        return temp
