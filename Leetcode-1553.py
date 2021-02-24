@@ -1,21 +1,18 @@
 class Solution(object):
-    s=0
     def minDays(self, m):
         """
         :type n: int
         :rtype: int
         """
-        self.s=999999999
+        dp={}
+        dp[0]=0
+        dp[1]=1
         
-        def eat(n,c):
-            if(n==0):
-                self.s=min(self.s,c)
-                return
-            if(n%2==0):
-                eat(n//2,c+1)
-            if(n%3==0):
-                eat(n//3,c+1)
-            eat(n-1,c+1)
-            
-        eat(m,0)
-        return(self.s)
+        def eat(n):
+            if(n in dp):
+                return dp[n]
+            dp[n]=1+min(n%2+eat(n//2),n%3+eat(n//3))
+            return dp[n]
+        
+        ret=eat(m)
+        return ret
