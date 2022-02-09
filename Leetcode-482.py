@@ -5,21 +5,8 @@ class Solution(object):
         :type k: int
         :rtype: str
         """
-        ret=""
-        s=s.upper()
-        i=len(s)-1
-        j=0
-        while(i>=0):
-            if(s[i]!='-'):
-                ret+=s[i]
-                j+=1
-            i-=1
-            if(j==k):
-                j=0
-                ret+="-"
-        if(len(ret)==0):
-            return ret
-        if(ret[-1]=='-'):
-            return ret[:-1][::-1]
-        else:
-            return ret[::-1]
+        s=s.replace("-","").upper()[::-1]
+        ret=[]
+        for i in range(0,len(s),k):
+            ret.append(s[i:i+k])
+        return "-".join(ret)[::-1]
