@@ -12,42 +12,25 @@ class Solution(object):
         """
         q=[]
         q.append(root)
-        flag=0
+        flag=True
         while(q):
-            l=len(q)
-            v=q.pop(0)
-            if(v.left):
-                q.append(v.left)
-            if(v.right):
-                q.append(v.right)
-            i=1
-            if(flag==0):
-                if(v.val%2==0):
-                    return False
-                while(i<l):
-                    val=q.pop(0)
-                    if(val.val%2==0 or val.val<=v.val):
+            prev=None
+            for _ in range(len(q)):
+                v=q.pop(0)
+                if(flag):
+                    if(v.val%2==0):
                         return False
-                    if(val.left):
-                        q.append(val.left)
-                    if(val.right):
-                        q.append(val.right)
-                    v=val
-                    i+=1
-                flag=1
-            else:
-                if(v.val%2==1):
-                    return False
-                while(i<l):
-                    val=q.pop(0)
-                    if(val.val%2==1 or val.val>=v.val):
+                    if(prev and prev.val>=v.val):
                         return False
-                    if(val.left):
-                        q.append(val.left)
-                    if(val.right):
-                        q.append(val.right)
-                    v=val
-                    i+=1
-                flag=0
+                else:
+                    if(v.val%2==1):
+                        return False
+                    if(prev and prev.val<=v.val):
+                        return False
+                if(v.left):
+                    q.append(v.left)
+                if(v.right):
+                    q.append(v.right)
+                prev=v
+            flag=not flag
         return True
-                
