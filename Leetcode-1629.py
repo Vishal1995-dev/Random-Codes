@@ -8,9 +8,8 @@ class Solution(object):
         ret=r[0]
         val=k[0]
         for i in range(1,len(r)):
-            if(r[i]-r[i-1]>=ret):
-                if(k[i]>val or ret<r[i]-r[i-1]):
-                    val=k[i]
+            if(r[i]-r[i-1]==ret and k[i]>val) or r[i]-r[i-1]>ret:
                 ret=r[i]-r[i-1]
+                val=k[i]
         return val
         
